@@ -22,4 +22,19 @@ test.describe("home page", async () => {
     await expect(await links.allInnerTexts()).toContain("API");
     await expect(await links.allInnerTexts()).toContain("Community");
   });
+
+  test("verify right nav items", async ({ page }) => {
+    const links = await page
+      .locator("div.navbar__items--right")
+      .getByRole("link");
+    await expect(links).toHaveCount(2);
+    await expect(await links.first()).toHaveAttribute(
+      "href",
+      "https://github.com/microsoft/playwright"
+    );
+    await expect(await links.last()).toHaveAttribute(
+      "href",
+      "https://aka.ms/playwright/discord"
+    );
+  });
 });
