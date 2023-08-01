@@ -58,3 +58,9 @@ test.describe("home page", async () => {
     await expect(page).toHaveURL("https://playwright.dev/docs/intro");
   });
 });
+
+test.describe("Getting Start page", async () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto("https://playwright.dev/docs/intro");
+  });
+});
