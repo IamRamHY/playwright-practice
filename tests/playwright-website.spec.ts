@@ -10,4 +10,8 @@ test.describe("home page", async () => {
       "Fast and reliable end-to-end testing for modern web apps | Playwright"
     );
   });
+
+  test("verify logo", async ({ page }) => {
+    await expect(page.getByAltText("logo")).toBeVisible();
+  });
 });
