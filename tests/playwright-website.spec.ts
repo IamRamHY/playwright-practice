@@ -46,4 +46,9 @@ test.describe("home page", async () => {
     await lightMode.click();
     await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
   });
+
+  test("open search modal", async ({ page }) => {
+    await page.locator("button.DocSearch-Button").click();
+    await expect(page.locator("div.DocSearch-Modal")).toBeVisible();
+  });
 });
