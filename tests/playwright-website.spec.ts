@@ -51,4 +51,10 @@ test.describe("home page", async () => {
     await page.locator("button.DocSearch-Button").click();
     await expect(page.locator("div.DocSearch-Modal")).toBeVisible();
   });
+
+  test("click get started", async ({ page }) => {
+    // await page.getByText("Get started").click();
+    await page.locator("a.getStarted_Sjon").click();
+    await expect(page).toHaveURL("https://playwright.dev/docs/intro");
+  });
 });
