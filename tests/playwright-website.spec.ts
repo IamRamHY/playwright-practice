@@ -37,4 +37,13 @@ test.describe("home page", async () => {
       "https://aka.ms/playwright/discord"
     );
   });
+
+  test("verify switch to dark mode", async ({ page }) => {
+    await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+    const lightMode = await page.getByLabel(
+      "Switch between dark and light mode (currently dark mode)"
+    );
+    await lightMode.click();
+    await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+  });
 });
