@@ -80,4 +80,13 @@ test.describe("Getting Start page", async () => {
     await expect(dropdownBtn).toHaveAttribute("aria-expanded", "false");
     await expect(dropdownList).toHaveCSS("display", "none");
   });
+
+  test("click next/back button", async ({ page }) => {
+    const footerNavBtnS = await page.locator("nav.pagination-nav");
+    await footerNavBtnS.getByText("Writing tests").click();
+    await expect(page).toHaveURL("https://playwright.dev/docs/writing-tests");
+
+    await footerNavBtnS.getByText("Installation").click();
+    await expect(page).toHaveURL("https://playwright.dev/docs/intro");
+  });
 });
