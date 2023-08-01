@@ -63,4 +63,21 @@ test.describe("Getting Start page", async () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("https://playwright.dev/docs/intro");
   });
+
+  test("test get start dropdown", async ({ page }) => {
+    const dropdownWrapper = await page.locator(
+      "li.theme-doc-sidebar-item-category-level-1"
+    );
+
+    const dropdownBtn = await dropdownWrapper.getByRole("link", {
+      name: "Getting Started",
+    });
+    const dropdownList = await dropdownWrapper.locator("ul.menu__list").nth(0);
+
+    await expect(dropdownBtn).toBeVisible();
+    await expect(dropdownBtn).toHaveAttribute("aria-expanded", "true");
+    await dropdownBtn.click();
+    await expect(dropdownBtn).toHaveAttribute("aria-expanded", "false");
+    await expect(dropdownList).toHaveCSS("display", "none");
+  });
 });
